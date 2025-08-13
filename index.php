@@ -1,4 +1,6 @@
 <?php
+
+
 function gercek_ip_al() {
     $ip_keys = [
         'HTTP_CLIENT_IP',
@@ -24,7 +26,7 @@ function gercek_ip_al() {
 }
 
 // İzin verilen IP'ler
-$izinli_ipler = ['::1', '111.222.333.444']; // kendi IP'lerini ekle
+$izinli_ipler = ['2a02:e0:661b:d200:48bf:2f94:6542:97bc', '111.222.333.444']; // kendi IP'lerini ekle
 
 $ziyaretci_ip = gercek_ip_al();
 
@@ -105,9 +107,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_request'])) {
     if ($method === 'POST') {
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
     } elseif ($method !== 'GET') {
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
     }
     $result = curl_exec($ch);
     curl_close($ch);
@@ -133,6 +141,7 @@ if (isset($_GET['load'], $_GET['folder']) && isset($collections[$_GET['folder']]
     <title>Mini PHP Postacı</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/561/561188.png">
+
     <style>
         body { background: #f5f6fa; }
         .card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
@@ -231,4 +240,3 @@ if (isset($_GET['load'], $_GET['folder']) && isset($collections[$_GET['folder']]
 </div>
 </body>
 </html>
-
