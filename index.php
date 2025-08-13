@@ -132,6 +132,7 @@ if (isset($_GET['load'], $_GET['folder']) && isset($collections[$_GET['folder']]
     <meta charset="UTF-8">
     <title>Mini PHP Postacı</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/561/561188.png">
     <style>
         body { background: #f5f6fa; }
         .card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
@@ -230,3 +231,4 @@ if (isset($_GET['load'], $_GET['folder']) && isset($collections[$_GET['folder']]
 </div>
 </body>
 </html>
+
